@@ -330,7 +330,7 @@
 		// group.children[ 0 ].geometry = new THREE.WireframeGeometry( boxGeometryBox );
 		group.children[ 0 ].geometry = boxGeometryBox;
 	
-		scene.add(group);
+		//scene.add(group);
 
 		// Add cube to Scene
 		
@@ -350,7 +350,7 @@
 
 		/*pdbLoader.load("https://raw.githubusercontent.com/mrdoob/three.js/master/examples/models/pdb/diamond.pdb"*/
 		const pdb = pdbLoader.parse(`
-		HEADER    NONAME 22-Apr-10                                              NONE   1
+HEADER    NONAME 22-Apr-10                                              NONE   1
 TITLE                                                                   NONE   2
 AUTHOR    Chemical Structure Services at http://cactus.nci.nih.gov      NONE   3
 REVDAT   1  22-Apr-10     0                                             NONE   4
@@ -393,7 +393,6 @@ CONECT   12   10    8    3    0                                         NONE  40
 CONECT   13    7    4    8    0                                         NONE  41
 CONECT   14    9    1    2    0                                         NONE  42
 END                                                                     NONE  43
-
 `)
 			debugger;
 					const geometryAtoms = pdb.geometryAtoms;
@@ -429,8 +428,8 @@ END                                                                     NONE  43
 
 						const object = new THREE.Mesh( sphereGeometry, material );
 						object.position.copy( position );
-						object.position.multiplyScalar( 15 );
-						object.scale.multiplyScalar( 5 );
+						object.position.multiplyScalar( 3 );
+						object.scale.multiplyScalar( 1 );
 						root.add( object );
 
 						const atom = json.atoms[ i ];
@@ -461,13 +460,13 @@ END                                                                     NONE  43
 						end.y = positions.getY( i + 1 );
 						end.z = positions.getZ( i + 1 );
 
-						start.multiplyScalar( 15 );
-						end.multiplyScalar( 15 );
+						start.multiplyScalar( 3 );
+						end.multiplyScalar( 3 );
 
 						const object = new THREE.Mesh( boxGeometry, new THREE.MeshPhongMaterial( { color: 0xffffff } ) );
 						object.position.copy( start );
 						object.position.lerp( end, 0.5 );
-						object.scale.set( 1, 1, start.distanceTo( end ) );
+						object.scale.set( 0.2, 0.2, start.distanceTo( end ) );
 						object.lookAt( end );
 						root.add( object );
 
