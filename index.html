@@ -428,8 +428,8 @@ END                                                                     NONE  43
 
 						const object = new THREE.Mesh( sphereGeometry, material );
 						object.position.copy( position );
-						object.position.multiplyScalar( 3 );
-						object.scale.multiplyScalar( 1 );
+						object.position.multiplyScalar( 1 );
+						object.scale.multiplyScalar( 0.3 );
 						root.add( object );
 
 						const atom = json.atoms[ i ];
@@ -460,13 +460,13 @@ END                                                                     NONE  43
 						end.y = positions.getY( i + 1 );
 						end.z = positions.getZ( i + 1 );
 
-						start.multiplyScalar( 3 );
-						end.multiplyScalar( 3 );
+						start.multiplyScalar( 1 );
+						end.multiplyScalar( 1 );
 
 						const object = new THREE.Mesh( boxGeometry, new THREE.MeshPhongMaterial( { color: 0xffffff } ) );
 						object.position.copy( start );
 						object.position.lerp( end, 0.5 );
-						object.scale.set( 0.2, 0.2, start.distanceTo( end ) );
+						object.scale.set( 0.06, 0.06, start.distanceTo( end ) );
 						object.lookAt( end );
 						root.add( object );
 
