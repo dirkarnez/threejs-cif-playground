@@ -306,8 +306,11 @@
 		geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( [], 3 ) );
 
 		const lineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true, opacity: 0.5 } );
-		const meshMaterial = new THREE.MeshPhongMaterial( { color: 0x156289, emissive: 0x072534, side: THREE.DoubleSide, flatShading: true } );
-
+		// DO NOT USE MeshPhongMaterial BECAUSE IT REQUIRES LIGHTS
+		// const meshMaterial = new THREE.MeshPhongMaterial( { color: , emissive: 0x072534, side: THREE.DoubleSide, flatShading: true } );
+		
+		const meshMaterial = new THREE.MeshBasicMaterial( {color: 0x156289 } );
+		
 		//group.add( new THREE.LineSegments( geometry, lineMaterial ) );
 		group.add( new THREE.Mesh( geometry, meshMaterial ) );
 		
@@ -424,7 +427,7 @@ END                                                                     NONE  43
 						color.g = colors.getY( i );
 						color.b = colors.getZ( i );
 
-						const material = new THREE.MeshPhongMaterial( { color: color } );
+						const material = new THREE.MeshBasicMaterial( { color: color } );
 
 						const object = new THREE.Mesh( sphereGeometry, material );
 						object.position.copy( position );
@@ -463,7 +466,7 @@ END                                                                     NONE  43
 						start.multiplyScalar( 1 );
 						end.multiplyScalar( 1 );
 
-						const object = new THREE.Mesh( boxGeometry, new THREE.MeshPhongMaterial( { color: 0xffffff } ) );
+						const object = new THREE.Mesh( boxGeometry, new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
 						object.position.copy( start );
 						object.position.lerp( end, 0.5 );
 						object.scale.set( 0.06, 0.06, start.distanceTo( end ) );
